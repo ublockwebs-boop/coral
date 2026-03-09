@@ -267,13 +267,13 @@ export default function App() {
               <input ref={searchInputRef} type="text" placeholder="Search games... ( / )" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="bg-[var(--bg-surface)] border-none rounded-2xl py-2.5 pl-11 pr-4 text-sm focus:ring-2 focus:ring-[var(--accent)] w-64 transition-all placeholder:text-[var(--fg-muted)]/50 text-[var(--fg)]" />
             </div>
 
-            <button onClick={() => setShowCategoryPicker((prev) => !prev)} className={`group flex items-center gap-2 px-3.5 py-2.5 rounded-2xl border transition-all shadow-sm ${selectedCategories.length ? 'bg-[var(--accent)] text-white border-[var(--accent)]' : 'bg-[var(--bg-surface)] border-white/10 hover:bg-[var(--bg-card)] text-[var(--fg)]'}`}>
+            <button type="button" onClick={() => setShowCategoryPicker((prev) => !prev)} className={`group flex items-center gap-2 px-3.5 py-2.5 rounded-2xl border transition-all shadow-sm ${selectedCategories.length ? 'bg-[var(--accent)] text-white border-[var(--accent)]' : 'bg-[var(--bg-surface)] border-white/10 hover:bg-[var(--bg-card)] text-[var(--fg)]'}`}>
               <SlidersHorizontal className="w-4 h-4" />
               <span className="text-sm font-semibold">Categories</span>
               {selectedCategories.length > 0 && <span className="text-[10px] px-2 py-0.5 rounded-full bg-black/20">{selectedCategories.length}</span>}
             </button>
 
-            <button onClick={() => setIsSideMenuOpen(true)} className="p-3 rounded-2xl bg-[var(--bg-surface)] hover:bg-[var(--bg-card)] text-[var(--fg)] transition-all hover:scale-105 active:scale-95 shadow-sm">
+            <button type="button" onClick={() => setIsSideMenuOpen(true)} className="p-3 rounded-2xl bg-[var(--bg-surface)] hover:bg-[var(--bg-card)] text-[var(--fg)] transition-all hover:scale-105 active:scale-95 shadow-sm">
               <Menu className="w-5 h-5" />
             </button>
           </div>
@@ -286,8 +286,8 @@ export default function App() {
                 const active = selectedGame?.Title === game.Title;
                 return (
                   <div key={`top-tab-${game.Title}`} className={`group flex items-center gap-2 px-3 py-2 min-w-36 rounded-t-2xl border-b-0 border ${active ? 'bg-[var(--bg)] border-white/20 text-white' : 'bg-[var(--bg-card)]/70 border-white/10 text-[var(--fg-muted)] hover:bg-[var(--bg-card)]'}`}>
-                    <button className="truncate text-xs font-semibold text-left" onClick={() => setSelectedGame(game)}>{game.Title}</button>
-                    <button className="opacity-70 hover:opacity-100" onClick={() => closeTab(game.Title)}><X className="w-3.5 h-3.5" /></button>
+                    <button type="button" className="truncate text-xs font-semibold text-left" onClick={() => setSelectedGame(game)}>{game.Title}</button>
+                    <button type="button" className="opacity-70 hover:opacity-100" onClick={() => closeTab(game.Title)}><X className="w-3.5 h-3.5" /></button>
                   </div>
                 );
               })}
@@ -308,15 +308,15 @@ export default function App() {
               {categories.map((cat) => {
                 const active = selectedCategories.includes(cat);
                 return (
-                  <button key={cat} onClick={() => toggleCategory(cat)} className={`text-left px-3 py-2 rounded-xl text-xs border transition-all ${active ? 'bg-[var(--accent)]/20 border-[var(--accent)] text-white' : 'bg-[var(--bg-card)] border-white/10 text-[var(--fg-muted)] hover:border-white/30'}`}>
+                  <button type="button" key={cat} onClick={() => toggleCategory(cat)} className={`text-left px-3 py-2 rounded-xl text-xs border transition-all ${active ? 'bg-[var(--accent)]/20 border-[var(--accent)] text-white' : 'bg-[var(--bg-card)] border-white/10 text-[var(--fg-muted)] hover:border-white/30'}`}>
                     <span className="inline-flex items-center gap-2">{active && <Check className="w-3.5 h-3.5" />} {cat}</span>
                   </button>
                 );
               })}
             </div>
             <div className="flex gap-2">
-              <button onClick={() => setShowCategoryPicker(false)} className="px-4 py-2 rounded-xl bg-[var(--accent)] text-white text-xs font-semibold">Apply Filter</button>
-              <button onClick={() => setSelectedCategories([])} className="px-4 py-2 rounded-xl bg-[var(--bg-card)] text-[var(--fg-muted)] text-xs font-semibold">Clear</button>
+              <button type="button" onClick={() => setShowCategoryPicker(false)} className="px-4 py-2 rounded-xl bg-[var(--accent)] text-white text-xs font-semibold">Apply Filter</button>
+              <button type="button" onClick={() => setSelectedCategories([])} className="px-4 py-2 rounded-xl bg-[var(--bg-card)] text-[var(--fg-muted)] text-xs font-semibold">Clear</button>
             </div>
           </div>
         )}
@@ -330,7 +330,7 @@ export default function App() {
               {recentlyPlayed.map((title) => {
                 const game = gameByTitle.get(title);
                 if (!game) return null;
-                return <button key={`recent-${title}`} onClick={() => handleGameSelect(game)} className="px-3 py-1.5 rounded-xl bg-[var(--bg-surface)] hover:bg-[var(--bg-card)] text-xs whitespace-nowrap">{title}</button>;
+                return <button type="button" key={`recent-${title}`} onClick={() => handleGameSelect(game)} className="px-3 py-1.5 rounded-xl bg-[var(--bg-surface)] hover:bg-[var(--bg-card)] text-xs whitespace-nowrap">{title}</button>;
               })}
             </div>
           </section>
@@ -389,13 +389,13 @@ export default function App() {
         {!isFullscreen && selectedGame && (
           <div className="flex items-center justify-between px-6 py-4 bg-[var(--bg-surface)]/80 backdrop-blur-xl border-b border-white/5">
             <div className="flex items-center gap-4">
-              <button onClick={closePlayer} className="p-2 hover:bg-[var(--bg-card)] rounded-full transition-colors text-[var(--fg)]"><ChevronLeft className="w-6 h-6" /></button>
+              <button type="button" onClick={closePlayer} className="p-2 hover:bg-[var(--bg-card)] rounded-full transition-colors text-[var(--fg)]"><ChevronLeft className="w-6 h-6" /></button>
               <h2 className="text-lg font-bold text-white">{selectedGame.Title}</h2>
             </div>
             <div className="flex items-center gap-2">
-              <button onClick={handleRandomGame} className="p-2.5 bg-[var(--bg-card)] hover:bg-[var(--accent)] rounded-xl"><Shuffle className="w-5 h-5" /></button>
-              <button onClick={refreshIframe} className="p-2.5 bg-[var(--bg-card)] hover:bg-[var(--accent)] rounded-xl"><RotateCcw className="w-5 h-5" /></button>
-              <button onClick={toggleFullscreen} className="p-2.5 bg-[var(--bg-card)] hover:bg-[var(--accent)] rounded-xl"><Maximize className="w-5 h-5" /></button>
+              <button type="button" onClick={handleRandomGame} className="p-2.5 bg-[var(--bg-card)] hover:bg-[var(--accent)] rounded-xl"><Shuffle className="w-5 h-5" /></button>
+              <button type="button" onClick={refreshIframe} className="p-2.5 bg-[var(--bg-card)] hover:bg-[var(--accent)] rounded-xl"><RotateCcw className="w-5 h-5" /></button>
+              <button type="button" onClick={toggleFullscreen} className="p-2.5 bg-[var(--bg-card)] hover:bg-[var(--accent)] rounded-xl"><Maximize className="w-5 h-5" /></button>
             </div>
           </div>
         )}
@@ -409,7 +409,7 @@ export default function App() {
             </div>
             <div className="space-y-2">
               {playerLeftGames.map((game) => (
-                <button key={`next-${game.Title}`} onClick={() => handleGameSelect(game)} className="w-full flex items-center gap-3 p-2 rounded-xl bg-[var(--bg-card)] hover:bg-[var(--accent)]/20 text-left">
+                <button type="button" key={`next-${game.Title}`} onClick={() => handleGameSelect(game)} className="w-full flex items-center gap-3 p-2 rounded-xl bg-[var(--bg-card)] hover:bg-[var(--accent)]/20 text-left">
                   <img src={game.Icon} className="w-8 h-8 rounded" alt="" referrerPolicy="no-referrer" />
                   <span className="text-sm truncate">{game.Title}</span>
                 </button>
@@ -452,23 +452,23 @@ export default function App() {
             <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ type: 'spring', damping: 30, stiffness: 300 }} className="fixed right-0 top-0 bottom-0 w-80 bg-[var(--bg-surface)] border-l border-white/5 z-[70] shadow-2xl flex flex-col rounded-l-3xl overflow-hidden">
               <div className="p-6 border-b border-white/5 flex items-center justify-between bg-[var(--bg-card)]">
                 <div className="flex items-center gap-3">
-                  {menuView !== 'main' && <button onClick={() => setMenuView('main')} className="p-1 hover:bg-white/10 rounded-full"><ChevronLeft className="w-5 h-5" /></button>}
+                  {menuView !== 'main' && <button type="button" onClick={() => setMenuView('main')} className="p-1 hover:bg-white/10 rounded-full"><ChevronLeft className="w-5 h-5" /></button>}
                   <h2 className="text-xl font-bold text-white">{menuView === 'settings' ? 'Settings' : 'Menu'}</h2>
                 </div>
-                <button onClick={() => setIsSideMenuOpen(false)} className="p-2 hover:bg-white/10 rounded-full"><X className="w-6 h-6" /></button>
+                <button type="button" onClick={() => setIsSideMenuOpen(false)} className="p-2 hover:bg-white/10 rounded-full"><X className="w-6 h-6" /></button>
               </div>
 
               <div className="flex-1 overflow-y-auto p-4">
                 {menuView === 'main' ? (
                   <div className="space-y-3">
-                    <button onClick={() => setMenuView('settings')} className="w-full flex items-center gap-4 p-4 rounded-2xl bg-[var(--bg-card)]"><Settings className="w-5 h-5" />Settings<ChevronRight className="w-4 h-4 ml-auto" /></button>
-                    <button onClick={() => { setShowUpdateLog(true); setIsSideMenuOpen(false); }} className="w-full flex items-center gap-4 p-4 rounded-2xl bg-[var(--bg-card)]"><History className="w-5 h-5" />Update Log<ChevronRight className="w-4 h-4 ml-auto" /></button>
-                    <button onClick={() => { setShowSocial(true); setIsSideMenuOpen(false); }} className="w-full flex items-center gap-4 p-4 rounded-2xl bg-[var(--bg-card)]"><Users className="w-5 h-5" />Social <span className="text-[10px] px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-300">WIP</span><ChevronRight className="w-4 h-4 ml-auto" /></button>
+                    <button type="button" onClick={() => setMenuView('settings')} className="w-full flex items-center gap-4 p-4 rounded-2xl bg-[var(--bg-card)]"><Settings className="w-5 h-5" />Settings<ChevronRight className="w-4 h-4 ml-auto" /></button>
+                    <button type="button" onClick={() => { setShowUpdateLog(true); setIsSideMenuOpen(false); }} className="w-full flex items-center gap-4 p-4 rounded-2xl bg-[var(--bg-card)]"><History className="w-5 h-5" />Update Log<ChevronRight className="w-4 h-4 ml-auto" /></button>
+                    <button type="button" onClick={() => { setShowSocial(true); setIsSideMenuOpen(false); }} className="w-full flex items-center gap-4 p-4 rounded-2xl bg-[var(--bg-card)]"><Users className="w-5 h-5" />Social <span className="text-[10px] px-2 py-0.5 rounded-full bg-yellow-500/20 text-yellow-300">WIP</span><ChevronRight className="w-4 h-4 ml-auto" /></button>
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    <div className="p-4 rounded-2xl bg-[var(--bg-card)] flex items-center justify-between"><span className="text-sm font-semibold">Auto Fullscreen</span><button onClick={() => setSettings({ ...settings, autoFullscreen: !settings.autoFullscreen })} className={`w-12 h-7 rounded-full ${settings.autoFullscreen ? 'bg-[var(--accent)]' : 'bg-[var(--bg-surface)]'}`} /></div>
-                    <div className="p-4 rounded-2xl bg-[var(--bg-card)] flex items-center justify-between"><span className="text-sm font-semibold">Enable Tabs</span><button onClick={() => { const next = !settings.enableTabs; setSettings({ ...settings, enableTabs: next }); if (!next) setOpenGames(selectedGame ? [selectedGame] : []); }} className={`w-12 h-7 rounded-full ${settings.enableTabs ? 'bg-[var(--accent)]' : 'bg-[var(--bg-surface)]'}`} /></div>
+                    <div className="p-4 rounded-2xl bg-[var(--bg-card)] flex items-center justify-between"><span className="text-sm font-semibold">Auto Fullscreen</span><button type="button" onClick={() => setSettings({ ...settings, autoFullscreen: !settings.autoFullscreen })} className={`w-12 h-7 rounded-full ${settings.autoFullscreen ? 'bg-[var(--accent)]' : 'bg-[var(--bg-surface)]'}`} /></div>
+                    <div className="p-4 rounded-2xl bg-[var(--bg-card)] flex items-center justify-between"><span className="text-sm font-semibold">Enable Tabs</span><button type="button" onClick={() => { const next = !settings.enableTabs; setSettings({ ...settings, enableTabs: next }); if (!next) setOpenGames(selectedGame ? [selectedGame] : []); }} className={`w-12 h-7 rounded-full ${settings.enableTabs ? 'bg-[var(--accent)]' : 'bg-[var(--bg-surface)]'}`} /></div>
                   </div>
                 )}
               </div>
@@ -482,7 +482,7 @@ export default function App() {
       <AnimatePresence>
         {showUpdateLog && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] bg-[var(--bg)] flex flex-col">
-            <div className="flex items-center justify-between p-6 border-b border-white/5 bg-[var(--bg-surface)]"><h2 className="text-2xl font-bold text-white">Update Log</h2><button onClick={() => setShowUpdateLog(false)} className="p-2 bg-[var(--bg-card)] rounded-full"><X className="w-6 h-6" /></button></div>
+            <div className="flex items-center justify-between p-6 border-b border-white/5 bg-[var(--bg-surface)]"><h2 className="text-2xl font-bold text-white">Update Log</h2><button type="button" onClick={() => setShowUpdateLog(false)} className="p-2 bg-[var(--bg-card)] rounded-full"><X className="w-6 h-6" /></button></div>
             <div className="flex-1 grid place-items-center text-[var(--fg-muted)] text-lg">v2.2 UI + QoL + perf updates</div>
           </motion.div>
         )}
@@ -491,7 +491,7 @@ export default function App() {
       <AnimatePresence>
         {showSocial && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[101] bg-[var(--bg)] flex flex-col">
-            <div className="flex items-center justify-between p-6 border-b border-white/5 bg-[var(--bg-surface)]"><h2 className="text-2xl font-bold text-white flex items-center gap-2">Social <span className="text-xs px-2 py-1 rounded-full bg-yellow-500/20 text-yellow-300">WIP</span></h2><button onClick={() => setShowSocial(false)} className="p-2 bg-[var(--bg-card)] rounded-full"><X className="w-6 h-6" /></button></div>
+            <div className="flex items-center justify-between p-6 border-b border-white/5 bg-[var(--bg-surface)]"><h2 className="text-2xl font-bold text-white flex items-center gap-2">Social <span className="text-xs px-2 py-1 rounded-full bg-yellow-500/20 text-yellow-300">WIP</span></h2><button type="button" onClick={() => setShowSocial(false)} className="p-2 bg-[var(--bg-card)] rounded-full"><X className="w-6 h-6" /></button></div>
             <div className="flex-1 grid place-items-center text-[var(--fg-muted)] text-lg">WIP</div>
           </motion.div>
         )}
@@ -500,9 +500,9 @@ export default function App() {
       <AnimatePresence>
         {contextMenu.visible && (
           <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} style={{ left: contextMenu.x, top: contextMenu.y }} className="fixed z-[120] min-w-48 rounded-xl border border-white/10 bg-[var(--bg-surface)] shadow-2xl p-2">
-            <button onClick={refreshIframe} className="w-full text-left px-3 py-2 rounded-lg hover:bg-[var(--bg-card)] text-sm flex items-center gap-2"><RotateCcw className="w-4 h-4" />Refresh game</button>
-            <button onClick={handleRandomGame} className="w-full text-left px-3 py-2 rounded-lg hover:bg-[var(--bg-card)] text-sm flex items-center gap-2"><Shuffle className="w-4 h-4" />Random game</button>
-            <button onClick={closePlayer} className="w-full text-left px-3 py-2 rounded-lg hover:bg-[var(--bg-card)] text-sm flex items-center gap-2"><MousePointer2 className="w-4 h-4" />Close player</button>
+            <button type="button" onClick={refreshIframe} className="w-full text-left px-3 py-2 rounded-lg hover:bg-[var(--bg-card)] text-sm flex items-center gap-2"><RotateCcw className="w-4 h-4" />Refresh game</button>
+            <button type="button" onClick={handleRandomGame} className="w-full text-left px-3 py-2 rounded-lg hover:bg-[var(--bg-card)] text-sm flex items-center gap-2"><Shuffle className="w-4 h-4" />Random game</button>
+            <button type="button" onClick={closePlayer} className="w-full text-left px-3 py-2 rounded-lg hover:bg-[var(--bg-card)] text-sm flex items-center gap-2"><MousePointer2 className="w-4 h-4" />Close player</button>
           </motion.div>
         )}
       </AnimatePresence>
