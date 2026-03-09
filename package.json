@@ -8,7 +8,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "build:gh": "vite build --base=/coral/",
+    "preview:gh": "vite preview --host 0.0.0.0 --port 4173"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",

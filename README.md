@@ -1,20 +1,44 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Coral
 
-# Run and deploy your AI Studio app
+Vite + React app for the Coral game library UI.
 
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/f8993f6d-dcd6-4956-ae58-4891e839dd4e
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
+## Local development
 
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+   ```bash
+   npm install
+   ```
+2. Run dev server:
+   ```bash
+   npm run dev
+   ```
+
+## Build
+
+- Standard build:
+  ```bash
+  npm run build
+  ```
+- GitHub Pages build (`/coral/` base path):
+  ```bash
+  npm run build:gh
+  ```
+
+## Deploy to GitHub Pages (recommended)
+
+This repo includes `.github/workflows/deploy-pages.yml`, which:
+- builds the app from `main`
+- compiles `.tsx` with Vite
+- publishes the `dist/` artifact to GitHub Pages
+
+### Required one-time repo settings
+
+1. Go to **Settings → Pages**.
+2. Set **Build and deployment** source to **GitHub Actions**.
+
+After that, pushing to `main` deploys automatically.
+
+## Why `main.tsx` 404 happened
+
+If GitHub Pages serves raw repo files directly, the browser cannot execute `main.tsx`.
+Use the Vite build output (`dist/`) or the provided Pages workflow so TSX is compiled to JS first.
