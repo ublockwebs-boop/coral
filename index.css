@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  /* Cozy Soft Dark Theme */
+  --bg: #13141f; /* Deep, soft charcoal-indigo */
+  --bg-surface: #1e2030; /* Softer, lighter indigo-grey */
+  --bg-card: #2a2d40; /* Soft purple-grey card */
+  
+  --fg: #e2e8f0; /* Soft white */
+  --fg-muted: #94a3b8; /* Muted blue-grey */
+  
+  --accent: #a5b4fc; /* Soft Periwinkle/Indigo */
+  --accent-light: #c7d2fe; /* Very soft pastel blue */
+  --accent-glow: rgba(165, 180, 252, 0.15);
+  
+  --radius-lg: 28px;
+  --radius-xl: 40px; /* Extra rounded for "soft" feel */
+}
+
+body {
+  background-color: var(--bg);
+  /* Subtle warm gradient for coziness */
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(76, 29, 149, 0.08), transparent 25%), 
+    radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.08), transparent 25%);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Custom Scrollbar (Round & Soft) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-card);
+  border-radius: 20px;
+  border: 3px solid var(--bg); /* Creates padding effect */
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+.glass {
+  background: rgba(30, 32, 48, 0.65);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy spring transition */
+}
+
+/* Hide scrollbar for horizontal scrolling areas */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
